@@ -101,6 +101,7 @@ public:
 	{
 		StringOOP temp;
 		temp.word = this->word + other.word;
+		temp.length = this->length + other.length;
 		return temp;
 	}
 
@@ -117,8 +118,8 @@ int main()
 	setlocale(LC_ALL, "ru");
 	StringOOP a("Бан");
 	StringOOP b("Лох");
-	StringOOP c;
-	c = a + b;
-	c.Print();
+	StringOOP c = a + b;
+	
+	
 	return 0;
 }
