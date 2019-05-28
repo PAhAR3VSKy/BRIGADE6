@@ -10,13 +10,13 @@ class StringOOP
 private:
 	int length;
 	string word;
-	/*string timeCreate;      ƒŒœ»—¿“‹  Œƒ ƒÀﬂ ¬–≈Ã≈Õ»!!
+	/*string timeCreate;      
 	string timeChange;*/
 public:
 
 	StringOOP()
 	{
-		word = "—ÚÓÍ‡ ÔÛÒÚ‡";
+		word = "–ü—É—Å—Ç–∞—è —Å—Ç—Ä–æ–∫–∞";
 		length = 0;
 	}
 
@@ -38,13 +38,12 @@ public:
 
 	/*string GetTimeCreate()
 	{
-		return timeCreate;
+	return timeCreate;
 	}
-
 	string GetTimeChange()
 	{
-		return timeChange;
-	}*/      
+	return timeChange;
+	}*/
 
 	void SetWord(string word)
 	{
@@ -58,12 +57,11 @@ public:
 
 	/*void SetTimeCreate(string timeCreate)
 	{
-		this->timeCreate = timeCreate;
+	this->timeCreate = timeCreate;
 	}
-
 	void SetTimeChange(string timeChange)
 	{
-		this->timeChange = timeChange;
+	this->timeChange = timeChange;
 	}*/
 
 	void Print()
@@ -74,17 +72,53 @@ public:
 	void FindWord(string litleWord)
 	{
 		if (word.find(litleWord) > word.length() || word.find(litleWord) < 0)
-			cout << "“‡ÍÓÈ ÔÓ‰ÒÚÓÍË ‚ ÒÚÓÍÂ ÌÂ ÒÛ˘ÂÒÚ‚ÛÂÚ" << endl;
+			cout << "–ò—Å–∫–æ–º–∞—è —á–∞—Å—Ç—å –ø–æ–¥—Å—Ç—Ä–æ–∫–∏ –æ—Ç—Å—É—Ç—Å–≤—É–µ—Ç –≤ —Å—Ç—Ä–æ–∫–µ" << endl;
 		else
-			cout << "œÓ‰ÒÚÓÍ‡ Ì‡˜ËÌ‡ÂÚÒˇ Ò ÔÓÁËˆËË: " << word.find(litleWord) << endl;
+			cout << "–ò—Å–∫–æ–º–∞—è –ø–æ–¥—Å—Ç—Ä–æ–∫–∞ –Ω–∞—á–∏–Ω–∞–µ—Ç—Å—è —Å –ø–æ–∑–∏—Ü–∏–∏: " << word.find(litleWord) << endl;
 	}
+
+	bool operator ==(const StringOOP & other)
+	{
+		return this->word == other.word;
+	}
+
+	bool operator !=(const StringOOP & other)
+	{
+		return !(this->word == other.word);
+	}
+
+	bool operator <(const StringOOP & other)
+	{
+		return this->word < other.word;
+	}
+
+	bool operator >(const StringOOP & other)
+	{
+		return this->word > other.word;
+	}
+
+	StringOOP & operator +(const StringOOP & other)
+	{
+		StringOOP temp;
+		temp.word = this->word + other.word;
+		return temp;
+	}
+
+	StringOOP & operator =(const StringOOP & other)
+	{
+		this->word = other.word;
+		return *this;
+	}
+
 };
 
 int main()
 {
 	setlocale(LC_ALL, "ru");
-	StringOOP a("’ÛÈ");
-	a.Print();
-	a.FindWord("ı");
+	StringOOP a("–ë–∞–Ω");
+	StringOOP b("–õ–æ—Ö");
+	StringOOP c;
+	c = a + b;
+	c.Print();
 	return 0;
 }
