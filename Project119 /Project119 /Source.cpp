@@ -4,9 +4,11 @@
 #include<iostream>
 #include<cstdlib>
 #include<stdio.h>
+#include<stdlib.h>
 #include<conio.h>
 #include<locale.h>
 #include<Windows.h>
+
 
 // Функции для кабинетов и мед персонала
 
@@ -166,15 +168,18 @@ patient_list *add_last_patient(patient_list *head, FILE *medicine) // Добав
 void medicine_menu(FILE *medicine, medicine_list *med_list)
 {
 
-	int key;
+	char key[20];
 	int flag = 1;
 
 	while (flag) // Выбор пунктов в меню
 	{
 		system("cls");
 		printf("Меню списка кабинетов и медицинского персонала\n\nПросмотр списка - 1\nПросмотр элемента списка - 2\nРедактирование/Удаление элемента списка - 3\nВыход в главное меню - 4\n");
-		scanf("%d", &key);
-		switch (key)
+		do
+		{
+			gets_s(key);
+		} while (CheckInput(key));
+		switch (atoi(key))
 		{
 		case 1:
 		{
@@ -210,15 +215,18 @@ void medicine_menu(FILE *medicine, medicine_list *med_list)
 
 void patient_menu(FILE *medicine, FILE *patient, medicine_list *med_list, patient_list *patient_list)
 {
-	int key;
+	char key[20];
 	int flag = 1;
 
 	while (flag) // Выбор пунктов в меню
 	{
 		system("cls");
 		printf("Меню списка пациентов и записи на прием\n\nПросмотр списка - 1\nПросмотр элемента списка - 2\nРедактирование/Удаление элемента списка - 3\nВыход в главное меню - 4\n");
-		scanf("%d", &key);
-		switch (key)
+		do
+		{
+			gets_s(key);
+		} while (CheckInput(key));
+		switch (atoi(key))
 		{
 		case 1:
 		{
@@ -252,6 +260,22 @@ void patient_menu(FILE *medicine, FILE *patient, medicine_list *med_list, patien
 	_getch();
 }
 
+bool CheckInput(char *CheckKey)
+{
+	
+	bool IsBreak = false;
+	for (int i = 0; CheckKey[i] != '\0'; i++)
+	{
+		if (CheckKey[i] < 48 || CheckKey[i]>57)
+		{
+			printf("Не число\n");
+			IsBreak = true;
+			break;
+		}
+	}
+	return IsBreak;
+}
+
 int main()
 {
 	setlocale(LC_ALL, "Russian");
@@ -271,7 +295,7 @@ int main()
 	if (patient == NULL)
 		medicine = fopen("patient.txt", "w+"); // Создание файлов для списков
 
-	int key; // Переменная выбора пункта меню
+	char key[20];// Переменная выбора пункта меню
 	int flag = 1; // флаг для выхода из цикла меню
 
 	while (flag) // Выбор пунктов в меню
@@ -279,8 +303,11 @@ int main()
 		system("cls");
 		printf("Программа РЕГИСТРАТУРА МЕДИЦИНСКОГО ЦЕНТРА\n\nГлавное меню\n\n");
 		printf("Работа со списком кабинетов и медицинского персонала - 1 \nРабота со списком пациентов и записи на прием - 2 \nЗавершение работы - 3 \n");
-		scanf("%d", &key);
-		switch (key)
+		do
+		{
+			gets_s(key);
+		} while (CheckInput(key));
+		switch (atoi(key))
 		{
 		case 1:
 		{
